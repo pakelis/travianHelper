@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.port || 5000
 
@@ -14,8 +15,8 @@ mongoose
 
 const servers = require('./routes/api/servers')
 
-app.use(express.urlencoded({extended: true}))
-app.use(express.json())
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
 
 //Use Routes
 app.use('/', servers)
