@@ -154,10 +154,15 @@ module.exports = () => {
 
         for (const [key, value] of Object.entries(servers)) {
           for (const link of value) {
+            //get only name
             name = link.substr(0, link.indexOf(' '))
+            //delete http from the start
+            name2 = name.replace(/^https?:\/\//, '')
+            //delete last character
+            name3 = name2.substr(0, name2.length - 1)
             days = link.substr(link.indexOf(' ') + 1)
             server = {
-              name: name,
+              name: name3,
               days: days,
             }
             result.push(server)
