@@ -143,23 +143,29 @@ async function scrapeTravibot(serversList) {
 
 // this is how to export async func!
 module.exports = () => {
-  return scrapeTravibot(serverList)
-    .then(servers => {
-      const result = []
+  return (
+    scrapeTravibot(serverList)
+      //Return object inside of array with server names and days left, so it could be easier to work with
+      .then(servers => {
+        let name
+        let days
+        let result = []
+        let server
 
-      for (let country in servers) {
-        result.push(country)
-        // country.forEach((element, index) => {
-        // country[index] = {
-        // name: element.substr(0, element.indexOf(' ')),
-        // days: element.substr(element.indexOf(' ') + 1),
-        // }
+        for (const [key, value] of Object.entries(servers)) {
+          for (const link of value) {
+            name = link.substr(0, link.indexOf(' '))
+            days = link.substr(link.indexOf(' ') + 1)
+            server = {
+              name: name,
+              days: days,
+            }
+            result.push(server)
+          }
+        }
 
-        // result.push(country[index])
-        // })
-      }
-
-      return result
-    }) // return all servers
-    .catch(console.error)
+        return result
+      }) // return all servers
+      .catch(console.error)
+  )
 }
