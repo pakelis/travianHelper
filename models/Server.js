@@ -1,12 +1,16 @@
 const mongoose = require('mongoose')
-const Schema = mongoos.Schema
+const Schema = mongoose.Schema
 
 //Create Schema
-const ServersSchema = new Schema({
-  server: {
-    name: String,
-    days: String,
+const ServersSchema = new Schema(
+  {
+    server: {
+      name: {type: String, required: true},
+      days: {type: String, required: true},
+    },
   },
-})
+  {unique: true},
+  {_id: false},
+)
 
 module.exports = Server = mongoose.model('servers', ServersSchema)
