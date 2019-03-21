@@ -22,10 +22,8 @@ const servers = require('./routes/api/servers')
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
-//Use Routes
-app.use('/', servers)
-
-app.get('/', async (request, response) => {
+//Scrape and load all servers to MongoDB
+async function loadData() {
   try {
     const servers = await scraper()
     for await (const item of servers) {
@@ -41,11 +39,20 @@ app.get('/', async (request, response) => {
         .then(server => console.log(server))
         .catch(e => console.log(e))
     }
-
-    response.json('All servers has been saved to DB')
-  } catch (e) {
-    console.log(e)
+  } catch (err) {
+    console.log(err)
   }
+}
+
+loadData()
+  .then(console.log('Data succesfully loaded to DB'))
+  .catch(e => console.log(e))
+
+//Use Routes
+app.use('/', servers)
+
+app.get('/', (request, response) => {
+  response.json('PORT 5000')
 })
 
 app.listen(port, err => {
