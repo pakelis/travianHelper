@@ -10,6 +10,7 @@
   "author": "MannyP",
   "license": "MIT",
   "dependencies": {
+    "async": "^2.6.2",
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.4",
@@ -17,7 +18,8 @@
     "node-fetch": "^2.3.0",
     "nodemon": "^1.18.10",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "request-promise": "^4.2.4",
+    "set-interval-async": "^1.0.23"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3"

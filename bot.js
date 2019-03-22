@@ -17,7 +17,7 @@ async function loadData() {
 
       newServer
         .save()
-        .then(server => console.log(server))
+        .then()
         .catch(e => console.log(e))
     }
   } catch (err) {
@@ -25,18 +25,8 @@ async function loadData() {
   }
 }
 
-//Scrape servers once an hour (setInterval)
-const min = 60
-const hour = min*60*100
-setInterval(() => {
-    
-},min)
-
-
-
 module.exports = () => {
   return {
     initialLoad: loadData(),
-    loopScraper: 
- }
+  }
 }
