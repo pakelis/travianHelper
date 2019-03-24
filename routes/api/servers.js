@@ -1,19 +1,19 @@
 const express = require('express')
 const router = express.Router()
-const scraper = require('../../scrape')
 const app = express()
 
+//Server model
+const Server = require('../../models/Server')
+
 //@route GET /servers
-//@desc Get all servers
+//@desc Get all not started servers
 //@access Public
 
-router.get('/servers', async (request, response) => {
-  try {
-    const servers = await scraper()
-    response.json(servers)
-  } catch (e) {
-    console.log(e)
-  }
+router.get('/servers', (req, res) => {
+  Server.find()
+    .sort({'server.days': -1})
+    .then(servers => res.json(servers))
+    .catch(err => res.status(404).json({noserversfound: 'No servers found'}))
 })
 
 module.exports = router

@@ -54,10 +54,13 @@ let numServers = Server.countDocuments({}).then(count => {
     loadData().then(console.log('Loading data...'))
   } else {
     const min = 60000
-    const hour = min * 60 * 1000
+    const hour = 3600000
     //if servers is not empty we want to update that data
     console.log('Updating data...')
     //Update servers once an hour (setInterval)
+    updateData()
+      .then(console.log('data updated'))
+      .catch(e => console.log(e))
     setInterval(() => {
       updateData()
         .then(console.log('data updated'))
