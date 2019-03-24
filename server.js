@@ -34,14 +34,18 @@ async function updateData() {
   const servers = await scraper()
   // change current server days with new scraped days
 
-  //HAVE TO FIX IT NOT UPDATING
-  /* async.eachSeries(servers, (server, done) => {
-    console.log(server)
-    Server.update({name: server.name}, server, done)
+  //using async npm , to update one at the time with eachSeries
+  async.eachSeries(servers, (server, done) => {
+    // console.log(server)
+    Server.updateOne(
+      {'server.name': server.name},
+      {$set: {'server.days': server.days}},
+      done,
+    )
   }),
     function allDone(err) {
       console.log(err)
-    } */
+    }
 }
 
 //If servers is empty we want to load all data
@@ -49,12 +53,16 @@ let numServers = Server.countDocuments({}).then(count => {
   if (count === 0 || null || undefined) {
     loadData().then(console.log('Loading data...'))
   } else {
-    const min = 60
-    const hour = min * 60 * 100
+    const min = 60000
+    const hour = min * 60 * 1000
     //if servers is not empty we want to update that data
     console.log('Updating data...')
     //Update servers once an hour (setInterval)
-    updateData()
+    setInterval(() => {
+      updateData()
+        .then(console.log('data updated'))
+        .catch(e => console.log(e))
+    }, hour)
   }
 })
 
