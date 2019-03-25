@@ -7,7 +7,7 @@ mongoose.set('useCreateIndex', true)
 const ServersSchema = new Schema({
   server: {
     name: {type: String, required: true, unique: true},
-    days: {type: String, required: true},
+    days: {type: Schema.Types.Mixed, required: true},
   },
 })
 

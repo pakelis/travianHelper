@@ -11,7 +11,7 @@ const Server = require('../../models/Server')
 
 router.get('/servers', (req, res) => {
   Server.find()
-    .sort({'server.days': -1})
+    .sort({'server.days': 1})
     .then(servers => res.json(servers))
     .catch(err => res.status(404).json({noserversfound: 'No servers found'}))
 })
