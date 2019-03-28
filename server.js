@@ -36,7 +36,8 @@ async function updateData() {
 
   //using async npm , to update one at the time with eachSeries
   async.eachSeries(servers, (server, done) => {
-    // console.log(server)
+    //TODO CHECK IF THERE IS NEW SERVERS IF SO ADD THEM TO DATABASE, BCUZ NOW WE UPDATE ONLY SERVERS THAT ALREADY ARE IN DB!
+    //We update our old servers with new data that we get
     Server.updateOne(
       {'server.name': server.name},
       {$set: {'server.days': server.days}},

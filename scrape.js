@@ -162,7 +162,7 @@ module.exports = () => {
             name3 = name2.substr(0, name2.length - 1)
             days = link.substr(link.indexOf(' ') + 1)
             //Convert from string to Number
-            days1 = days.length < 3 ? Number(days) : days
+            days1 = days.length <= 3 ? Number(days) : days
             server = {
               name: name3,
               days: days1,
