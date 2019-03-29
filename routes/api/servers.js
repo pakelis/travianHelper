@@ -51,8 +51,23 @@ router.get('/servers', (req, res) => {
     .catch(err => res.status(404).json({noserversfound: 'No servers found'}))
 })
 
+//@route GET /servers/:id
+//@desc Get servers by country
+//@access Public
+
 router.get('/servers/:id', (req, res) => {
-  res.json(`${req.url}`)
+  // res.json(`${req.params.id}`)
+  Server.find()
+    .sort({'server.days': 1})
+    .then(servers => {
+      let country = []
+      for (const item of servers) {
+        if (item.server.name.includes(req.params.id)) {
+          country.push(item)
+        }
+      }
+      res.json(country)
+    })
 })
 
 module.exports = router
