@@ -6,7 +6,7 @@ const app = express()
 const Server = require('../../models/Server')
 
 //@route GET /servers
-//@desc Get all not started servers
+//@desc Get all servers, sorted by date
 //@access Public
 
 router.get('/servers', (req, res) => {
@@ -30,15 +30,29 @@ router.get('/servers', (req, res) => {
           stringList.push(item)
         }
 
+        //Sort string list by date
         stringList.sort((a, b) => {
-          //TODO SORT dates array
+          a.server.days = a.server.days
+            .split('/')
+            .reverse()
+            .join('')
+          b.server.days = b.server.days
+            .split('/')
+            .reverse()
+            .join('')
+          return a.server.days.localeCompare(b.server.days)
         })
+        //reverse it so it looks by date
+        stringList.reverse()
       }
       const sortedList = stringList.concat(servers)
       return res.json(sortedList)
     })
-  // .then(servers => res.json(servers))
-  // .catch(err => res.status(404).json({noserversfound: 'No servers found'}))
+    .catch(err => res.status(404).json({noserversfound: 'No servers found'}))
+})
+
+router.get('/servers/:id', (req, res) => {
+  res.json(`${req.url}`)
 })
 
 module.exports = router
