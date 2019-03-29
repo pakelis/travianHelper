@@ -31,17 +31,7 @@ router.get('/servers', (req, res) => {
         }
 
         stringList.sort((a, b) => {
-          a = a
-            .toString()
-            .split('-')
-            .reverse()
-            .join('')
-          b = b
-            .toString()
-            .split('-')
-            .reverse()
-            .join('')
-          return a > b ? 1 : a < b ? -1 : 0
+          //TODO SORT dates array
         })
       }
       const sortedList = stringList.concat(servers)
