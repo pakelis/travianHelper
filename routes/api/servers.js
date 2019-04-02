@@ -66,7 +66,12 @@ router.get('/servers/:id', (req, res) => {
           country.push(item)
         }
       }
-      res.json(country)
+      //if array is empty throw status 404
+      if (country.length < 1 || undefined) {
+        res.status(404).json("Can't find servers with that name")
+      } else {
+        res.json(country)
+      }
     })
 })
 
