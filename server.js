@@ -31,6 +31,7 @@ async function loadData() {
   await initialLoad()
 }
 async function updateData() {
+  //TODO error after few times of updating!
   const servers = await scraper()
   // change current server days with new scraped days
 
