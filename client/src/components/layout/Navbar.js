@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
-import logo from '../img/image.png'
+import logo from '../img/icon.png'
+import {Link} from 'react-router-dom'
 
 class Navbar extends Component {
   render() {
     return (
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a href="/" className="navbar-brand">
+      <nav className="navbar navbar-expand-md navbar-light">
+        <Link to="/" className="navbar-brand">
           <img src={logo} alt="Logo" width="100" height="100" />
           TRAVIAN SERVER LIST
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           data-toggle="collapse"
@@ -19,19 +20,19 @@ class Navbar extends Component {
         <div className="collapse navbar-collapse" id="navbarMenu">
           <ul className="nav navbar-nav flex-fill justify-content-end">
             <li className="nav-item">
-              <a href="/" className="nav-link">
-                Contact
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="/" className="nav-link">
-                Servers
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="/" className="nav-link">
+              <Link to="/farmlist" className="nav-link">
                 Farm List
-              </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/" className="nav-link">
+                Servers
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/contact" className="nav-link">
+                Contact
+              </Link>
             </li>
           </ul>
         </div>
