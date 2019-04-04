@@ -1,22 +1,40 @@
 import React, {Component} from 'react'
-import logo from '../img/logo.png'
+import logo from '../img/image.png'
 
 class Navbar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-md navbar-light bg-light">
         <a href="/" className="navbar-brand">
-          <img
-            src={logo}
-            width="50"
-            height="80"
-            className="d-inline-block align top"
-            alt="logo"
-          />
+          <img src={logo} alt="Logo" width="100" height="100" />
+          TRAVIAN SERVER LIST
         </a>
-        <b>Travian </b>
-        <br />
-        Server List
+        <button
+          className="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarMenu"
+        >
+          <span className="navbar-toggler-icon" />
+        </button>
+        <div className="collapse navbar-collapse" id="navbarMenu">
+          <ul className="nav navbar-nav flex-fill justify-content-end">
+            <li className="nav-item">
+              <a href="/" className="nav-link">
+                Contact
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="/" className="nav-link">
+                Servers
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="/" className="nav-link">
+                Farm List
+              </a>
+            </li>
+          </ul>
+        </div>
       </nav>
     )
   }
