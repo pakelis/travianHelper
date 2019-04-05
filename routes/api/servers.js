@@ -45,7 +45,11 @@ router.get('/servers', (req, res) => {
         //reverse it so it looks by date
         stringList.reverse()
       }
-      const sortedList = stringList.concat(servers)
+      let sortedList = stringList.concat(servers)
+      //delete dates from array end
+      for (let i = 0; i < stringList.length; i++) {
+        sortedList.pop()
+      }
       return res.json(sortedList)
     })
     .catch(err => res.status(404).json({noserversfound: 'No servers found'}))
