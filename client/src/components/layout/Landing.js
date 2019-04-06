@@ -22,10 +22,6 @@ class Landing extends Component {
         <th scope="row">{numRows++}</th>
         <td>
           <ReactCountryFlag
-            styleProps={{
-              width: '20px',
-              height: '20px',
-            }}
             code={
               server.server.name.includes('lt') === true
                 ? 'lt'
@@ -57,7 +53,11 @@ class Landing extends Component {
           />
           {` ${server.server.name}`}
         </td>
-        <td>{server.server.days}</td>
+        <td>
+          {typeof server.server.days === 'string'
+            ? server.server.days
+            : `${server.server.days} days ago`}
+        </td>
         <td>
           <button type="button" className="btn btn-outline-dark">
             <a
@@ -82,7 +82,7 @@ class Landing extends Component {
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Server</th>
-                  <th scope="col">Days Left</th>
+                  <th scope="col">Start Date</th>
                   <th scope="col">Register</th>
                 </tr>
               </thead>
