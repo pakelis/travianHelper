@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-// import ServerList from '../serverlist/ServerList'
+import CountryList from '../serverlist/CountryList'
 import ReactCountryFlag from 'react-country-flag'
 import axios from 'axios'
 
@@ -74,6 +74,7 @@ class Landing extends Component {
 
     return (
       <div className="container">
+        <CountryList />
         <div className="card mt-5">
           <div className="table-responsive">
             <table className="table">
