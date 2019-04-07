@@ -19,7 +19,15 @@ class App extends Component {
           <div className="container">
             <Route exact path="/farmlist" component={FarmList} />
             <Route exact path="/contact" component={Contact} />
-            <Route path="/servers/:id" component={CountryList} />
+            <Route
+              path="/servers/:id"
+              render={props => (
+                <div>
+                  {/* <CountryList {...props} /> */}
+                  <FlagList {...props} />
+                </div>
+              )}
+            />
           </div>
           <Footer />
         </div>

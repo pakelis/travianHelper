@@ -40,9 +40,9 @@ class CountryList extends Component {
 
   render() {
     //TODO fix country names , some of them duplicates
-    const flaglist = this.state.flagList.map(flag => (
-      <button className="btn btn-light">
-        <Link to={`servers/${flag.name}`}>
+    const flaglist = this.state.flagList.map((flag, index) => (
+      <button key={index} className="btn btn-light">
+        <Link to={`/servers/${flag.name}`}>
           <ReactCountryFlag code={flag.flag} svg />
           {` ${flag.name}`}
         </Link>
