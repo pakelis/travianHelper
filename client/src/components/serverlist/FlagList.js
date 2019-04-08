@@ -20,7 +20,17 @@ class FlagList extends Component {
   }
 
   componentDidUpdate(prevprops) {
+    //check if props changed if so get axios request to change state to rerender component!
+    //TODO make axios request a function so it wont duplicate
     if (this.props.match.params.id !== prevprops.match.params.id) {
+      axios
+        .get(`/servers/${this.props.match.params.id}`)
+        .then(res =>
+          this.setState({
+            servers: res.data,
+          }),
+        )
+        .catch(err => console.log(err))
     }
   }
 
@@ -63,9 +73,19 @@ class FlagList extends Component {
           {` ${server.server.name}`}
         </td>
         <td>
-          {typeof server.server.days === 'string'
-            ? server.server.days
-            : `${server.server.days} days ago`}
+          {typeof server.server.days === 'string' ? (
+            <h5>
+              <span className="badge badge-pill badge-success">
+                {server.server.days}
+              </span>
+            </h5>
+          ) : (
+            <h5>
+              <span className="badge badge-pill badge-warning">
+                {server.server.days} days ago
+              </span>
+            </h5>
+          )}
         </td>
         <td>
           <button type="button" className="btn btn-outline-dark">
@@ -84,7 +104,7 @@ class FlagList extends Component {
     return (
       <div className="container mt-5">
         <CountryList />
-        <div className="card">
+        <div className="card mt-5">
           <div className="table-responsive">
             <table className="table">
               <thead className="thead-dark">

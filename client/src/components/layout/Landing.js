@@ -54,9 +54,19 @@ class Landing extends Component {
           {` ${server.server.name}`}
         </td>
         <td>
-          {typeof server.server.days === 'string'
-            ? server.server.days
-            : `${server.server.days} days ago`}
+          {typeof server.server.days === 'string' ? (
+            <h5>
+              <span className="badge badge-pill badge-success">
+                {server.server.days}
+              </span>
+            </h5>
+          ) : (
+            <h5>
+              <span className="badge badge-pill badge-warning">
+                {server.server.days} days ago
+              </span>
+            </h5>
+          )}
         </td>
         <td>
           <button type="button" className="btn btn-outline-dark">

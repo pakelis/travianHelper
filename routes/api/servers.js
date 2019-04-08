@@ -66,7 +66,16 @@ router.get('/servers/:id', (req, res) => {
     .then(servers => {
       let country = []
       for (const item of servers) {
-        if (item.server.name.includes(req.params.id)) {
+        if (
+          req.params.id === 'travian.com' &&
+          item.server.name.endsWith('travian.com') &&
+          item.server.name.length <= 18
+        ) {
+          country.push(item)
+        } else if (
+          req.params.id !== 'travian.com' &&
+          item.server.name.includes(req.params.id)
+        ) {
           country.push(item)
         }
       }

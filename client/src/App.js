@@ -7,7 +7,6 @@ import Contact from './components/contact/Contact'
 import FlagList from './components/serverlist/FlagList'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css'
-import CountryList from './components/serverlist/CountryList'
 
 class App extends Component {
   render() {
