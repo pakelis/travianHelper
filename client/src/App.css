@@ -12,6 +12,10 @@
   margin-right: 10px;
 }
 
+.form-rounded {
+  border-radius: 1rem;
+}
+
 .nav-link {
   font-size: 1.25em;
   font-weight: 400;
