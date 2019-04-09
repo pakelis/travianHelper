@@ -4,7 +4,7 @@ import axios from 'axios'
 class FarmList extends Component {
   onSubmitClick = () => {
     axios
-      .get('ts2.travian.lt/map.sql')
+      .get('/farmlist/:id')
       .then(res => console.log(res))
       .catch(err => console.log(err))
   }

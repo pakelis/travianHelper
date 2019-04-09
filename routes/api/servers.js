@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const app = express()
+const fetch = require('node-fetch')
 
 //Server model
 const Server = require('../../models/Server')
@@ -86,6 +87,25 @@ router.get('/servers/:id', (req, res) => {
         res.json(country)
       }
     })
+})
+
+//@route GET /farmlist/:id
+//@desc Get farmlist by id
+//@access Public
+
+router.get('/farmlist/:id', (req, res) => {
+  let myInit = {
+    headers: {
+      'Content-type': 'application/x-www-form-urlencoded',
+    },
+  }
+
+  fetch('http://ts2.travian.com/map.sql', myInit)
+    .then(fetchRes => fetchRes.text()) // fetch resolves Response object,not the actual content of response so we use text()
+    .then(data => {
+      return res.send(data) // no need res.json
+    })
+    .catch(err => console.log(err))
 })
 
 module.exports = router
