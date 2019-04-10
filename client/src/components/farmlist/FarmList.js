@@ -5,7 +5,7 @@ class FarmList extends Component {
   onSubmitClick = () => {
     axios
       .get('/farmlist/:id')
-      .then(res => console.log(res))
+      .then(res => console.log(res.data))
       .catch(err => console.log(err))
   }
 

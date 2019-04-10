@@ -59,6 +59,9 @@ class CountryList extends Component {
                 <ReactCountryFlag code="eu" svg /> all
               </button>
             </Link>
+            <Link to={`/servers/speed`}>
+              <button className="btn btn-light">Speed</button>
+            </Link>
           </div>
         </div>
       </div>

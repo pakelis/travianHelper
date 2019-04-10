@@ -78,6 +78,11 @@ router.get('/servers/:id', (req, res) => {
           item.server.name.includes(req.params.id)
         ) {
           country.push(item)
+        } else if (
+          req.params.id === 'speed' &&
+          item.server.name.startsWith('tx')
+        ) {
+          country.push(item)
         }
       }
       //if array is empty throw status 404
@@ -100,10 +105,37 @@ router.get('/farmlist/:id', (req, res) => {
     },
   }
 
-  fetch('http://ts2.travian.com/map.sql', myInit)
+  fetch('http://ts3.baltics.travian.com/map.sql', myInit)
     .then(fetchRes => fetchRes.text()) // fetch resolves Response object,not the actual content of response so we use text()
     .then(data => {
-      return res.send(data) // no need res.json
+      // no need res.json
+      //splitting text by ;
+      let players = data.split(';')
+      let parsedPlayers = []
+      for (let player of players) {
+        // getting the middle of braces (middle)
+        player = player.substring(
+          player.lastIndexOf('(') + 1,
+          player.lastIndexOf(')'),
+        )
+        //split player string by comma
+        userString = player.split(',')
+        let user = {
+          fieldId: userString[0],
+          xCoord: userString[1],
+          yCoord: userString[2],
+          tribeId: userString[3],
+          villageId: userString[4],
+          villageName: userString[5],
+          userId: userString[6],
+          accountName: userString[7],
+          allianceId: userString[8],
+          allianceName: userString[9],
+          pop: userString[10],
+        }
+        parsedPlayers.push(user)
+      }
+      res.send(parsedPlayers)
     })
     .catch(err => console.log(err))
 })
