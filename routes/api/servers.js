@@ -105,7 +105,7 @@ router.get('/farmlist/:id', (req, res) => {
     },
   }
 
-  fetch('http://ts3.baltics.travian.com/map.sql', myInit)
+  fetch(`http://${req.params.id}/map.sql`, myInit)
     .then(fetchRes => fetchRes.text()) // fetch resolves Response object,not the actual content of response so we use text()
     .then(data => {
       // no need res.json

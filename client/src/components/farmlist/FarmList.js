@@ -2,11 +2,25 @@ import React, {Component} from 'react'
 import axios from 'axios'
 
 class FarmList extends Component {
+  state = {
+    serverName: '',
+    x: '',
+    y: '',
+    minPop: '',
+    maxPop: '',
+  }
+
   onSubmitClick = () => {
     axios
       .get('/farmlist/:id')
       .then(res => console.log(res.data))
       .catch(err => console.log(err))
+  }
+
+  onInputChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
   }
 
   render() {
@@ -23,6 +37,8 @@ class FarmList extends Component {
                     type="text"
                     className="form-control form-rounded"
                     placeholder="ts2.travian.com"
+                    name="serverName"
+                    onChange={this.onInputChange}
                   />
                   <div className="form-group col-12 col-md-6 mt-3">
                     <label className="control-label ml-1">X coordinates</label>
@@ -30,6 +46,8 @@ class FarmList extends Component {
                       type="text"
                       className="form-control form-rounded"
                       placeholder="X"
+                      name="x"
+                      onChange={this.onInputChange}
                     />
                   </div>
                   <div className="form-group col-12 col-md-6 mt-3">
@@ -38,6 +56,8 @@ class FarmList extends Component {
                       type="text"
                       className="form-control form-rounded"
                       placeholder="Y"
+                      name="y"
+                      onChange={this.onInputChange}
                     />
                   </div>
                   <div className="form-group col-12 col-md-6">
@@ -46,6 +66,8 @@ class FarmList extends Component {
                       type="text"
                       className="form-control form-rounded"
                       placeholder="Min"
+                      name="minPop"
+                      onChange={this.onInputChange}
                     />
                   </div>
                   <div className="form-group col-12 col-md-6">
@@ -54,6 +76,8 @@ class FarmList extends Component {
                       type="text"
                       className="form-control form-rounded"
                       placeholder="Max"
+                      name="maxPop"
+                      onChange={this.onInputChange}
                     />
                   </div>
                 </div>
