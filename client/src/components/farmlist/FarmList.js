@@ -1,19 +1,24 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import FarmTable from './FarmTable'
 
 class FarmList extends Component {
   state = {
+    players: [],
     serverName: '',
     x: '',
     y: '',
     minPop: '',
     maxPop: '',
+    displayList: 0,
   }
 
-  onSubmitClick = () => {
+  displayList = e => {
     axios
-      .get('/farmlist/:id')
-      .then(res => console.log(res.data))
+      .get(`/farmlist/${this.state.serverName}`)
+      .then(res => {
+        this.setState({players: res.data, displayList: 1})
+      })
       .catch(err => console.log(err))
   }
 
@@ -24,6 +29,22 @@ class FarmList extends Component {
   }
 
   render() {
+    let list = null
+
+    if (this.state.displayList === 1) {
+      list = (
+        <div>
+          <FarmTable
+            x={this.state.x}
+            y={this.state.y}
+            minPop={this.state.minPop}
+            maxPop={this.state.maxPop}
+            players={this.state.players}
+          />
+        </div>
+      )
+    }
+
     return (
       <div className="container">
         <div className="row justify-content-center">
@@ -80,13 +101,23 @@ class FarmList extends Component {
                       onChange={this.onInputChange}
                     />
                   </div>
+                  <div className="form-group col-12 col-md-6 ">
+                    <label className="control-label ml-1">Distance</label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      placeholder=""
+                      name="distance"
+                      onChange={this.onInputChange}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="col-md-12 text-center mb-3">
                 <button
                   type="submit"
                   className="btn btn-primary btn-lg"
-                  onClick={this.onSubmitClick}
+                  onClick={this.displayList}
                 >
                   Search
                 </button>
@@ -94,6 +125,7 @@ class FarmList extends Component {
             </div>
           </div>
         </div>
+        {list}
       </div>
     )
   }

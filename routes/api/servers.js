@@ -120,15 +120,22 @@ router.get('/farmlist/:id', (req, res) => {
         )
         //split player string by comma
         userString = player.split(',')
+        //Making Names string objects
+        let villageName = new String(userString[5])
+        let accountName = new String(userString[7])
+        villageName = villageName.slice(0, -1)
+        villageName = villageName.slice(1, villageName.length)
+        accountName = accountName.slice(0, -1)
+        accountName = accountName.slice(1, accountName.length)
         let user = {
           fieldId: userString[0],
           xCoord: userString[1],
           yCoord: userString[2],
           tribeId: userString[3],
           villageId: userString[4],
-          villageName: userString[5],
+          villageName: villageName,
           userId: userString[6],
-          accountName: userString[7],
+          accountName: accountName,
           allianceId: userString[8],
           allianceName: userString[9],
           pop: userString[10],
