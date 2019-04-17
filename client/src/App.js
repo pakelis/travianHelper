@@ -3,10 +3,10 @@ import Navbar from './components/layout/Navbar'
 import Landing from './components/layout/Landing'
 import Footer from './components/layout/Footer'
 import FarmList from './components/farmlist/FarmList'
-import Contact from './components/contact/Contact'
 import FlagList from './components/serverlist/FlagList'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import './App.css'
+import ServerInfo from './components/serverinfo/ServerInfo'
 
 class App extends Component {
   render() {
@@ -17,12 +17,11 @@ class App extends Component {
           <Route exact path="/" component={Landing} />
           <div className="container">
             <Route exact path="/farmlist" component={FarmList} />
-            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/servinfo" component={ServerInfo} />
             <Route
               path="/servers/:id"
               render={props => (
                 <div>
-                  {/* <CountryList {...props} /> */}
                   <FlagList {...props} />
                 </div>
               )}

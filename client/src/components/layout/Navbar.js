@@ -30,8 +30,8 @@ class Navbar extends Component {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/contact" className="nav-link">
-                Contact
+              <Link to="/servinfo" className="nav-link">
+                Server Info
               </Link>
             </li>
           </ul>

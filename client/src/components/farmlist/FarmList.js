@@ -10,6 +10,7 @@ class FarmList extends Component {
     y: '',
     minPop: '',
     maxPop: '',
+    distance: '',
     displayList: 0,
   }
 
@@ -40,6 +41,7 @@ class FarmList extends Component {
             minPop={this.state.minPop}
             maxPop={this.state.maxPop}
             players={this.state.players}
+            distance={this.state.distance}
           />
         </div>
       )
