@@ -2,6 +2,7 @@ import React from 'react'
 import Gauls from '../img/gauls.png'
 import Romans from '../img/romans.png'
 import Teutons from '../img/teutons.png'
+import Natars from '../img/natars.png'
 
 const FarmTable = props => {
   function calculateDistance(playerX, playerY) {
@@ -25,8 +26,19 @@ const FarmTable = props => {
         <td>{player.yCoord}</td>
         <td>{player.villageName}</td>
         <td>{player.accountName}</td>
+        <td>
+          {player.tribeId === '5' ? (
+            <img src={Natars} alt="Natars" width="30" height="30" />
+          ) : player.tribeId === '3' ? (
+            <img src={Gauls} alt="Gauls" width="30" height="30" />
+          ) : player.tribeId === '2' ? (
+            <img src={Romans} alt="Romans" width="30" height="30" />
+          ) : player.tribeId === '1' ? (
+            <img src={Teutons} alt="Teutons" width="30" height="30" />
+          ) : null}
+        </td>
         <td>{player.pop}</td>
-        <td>{player.tribeId}</td>
+        <td>{player.allianceName}</td>
       </tr>
     ) : null,
   )
@@ -42,10 +54,11 @@ const FarmTable = props => {
                 <th scope="col">Distance</th>
                 <th scope="col">x coord</th>
                 <th scope="col">y coord</th>
-                <th scope="col">Village name</th>
-                <th scope="col">Account name</th>
-                <th scope="col">Population</th>
+                <th scope="col">Village</th>
+                <th scope="col">Player</th>
                 <th scope="col">Tribe</th>
+                <th scope="col">Population</th>
+                <th scope="col">Alliance</th>
               </tr>
             </thead>
             <tbody>{players}</tbody>

@@ -18,7 +18,10 @@ class FarmList extends Component {
     axios
       .get(`/farmlist/${this.state.serverName}`)
       .then(res => {
-        this.setState({players: res.data, displayList: 1})
+        this.setState({
+          players: res.data,
+          displayList: 1,
+        })
       })
       .catch(err => console.log(err))
   }

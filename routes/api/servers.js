@@ -123,10 +123,13 @@ router.get('/farmlist/:id', (req, res) => {
         //Making Names string objects
         let villageName = new String(userString[5])
         let accountName = new String(userString[7])
+        let allianceName = new String(userString[9])
         villageName = villageName.slice(0, -1)
         villageName = villageName.slice(1, villageName.length)
         accountName = accountName.slice(0, -1)
         accountName = accountName.slice(1, accountName.length)
+        allianceName = allianceName.slice(0, -1)
+        allianceName = allianceName.slice(1, allianceName.length)
         let user = {
           fieldId: userString[0],
           xCoord: userString[1],
@@ -137,7 +140,7 @@ router.get('/farmlist/:id', (req, res) => {
           userId: userString[6],
           accountName: accountName,
           allianceId: userString[8],
-          allianceName: userString[9],
+          allianceName: allianceName,
           pop: userString[10],
         }
         parsedPlayers.push(user)
