@@ -5,22 +5,35 @@ import FarmTable from './FarmTable'
 class FarmList extends Component {
   state = {
     players: [],
-    serverName: '',
-    x: '',
-    y: '',
-    minPop: '',
-    maxPop: '',
-    distance: '',
+    unpublished: {
+      serverName: '',
+      x: '',
+      y: '',
+      minPop: '',
+      maxPop: '',
+      distance: '',
+    },
+    published: {
+      serverName: '',
+      x: '',
+      y: '',
+      minPop: '',
+      maxPop: '',
+      distance: '',
+    },
     displayList: 0,
   }
 
   displayList = e => {
     axios
-      .get(`/farmlist/${this.state.serverName}`)
+      .get(`/farmlist/${this.state.unpublished.serverName}`)
       .then(res => {
         this.setState({
           players: res.data,
           displayList: 1,
+          //SOMETHING WRONG WITH THIS
+          // ...this.state,
+          published: {...this.state.published, ...this.state.unpublished},
         })
       })
       .catch(err => console.log(err))
@@ -28,7 +41,11 @@ class FarmList extends Component {
 
   onInputChange = e => {
     this.setState({
-      [e.target.name]: e.target.value,
+      // spreading unpublished state so i could use [e.target.name] : e.target.value
+      unpublished: {
+        ...this.state.unpublished,
+        [e.target.name]: e.target.value,
+      },
     })
   }
 
@@ -39,12 +56,12 @@ class FarmList extends Component {
       list = (
         <div>
           <FarmTable
-            x={this.state.x}
-            y={this.state.y}
-            minPop={this.state.minPop}
-            maxPop={this.state.maxPop}
+            x={this.state.published.x}
+            y={this.state.published.y}
+            minPop={this.state.published.minPop}
+            maxPop={this.state.published.maxPop}
             players={this.state.players}
-            distance={this.state.distance}
+            distance={this.state.published.distance}
           />
         </div>
       )
