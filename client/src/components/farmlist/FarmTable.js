@@ -14,11 +14,15 @@ const FarmTable = props => {
     return dist
   }
 
+  //doesnt work in between if i write min pop 5 or 3 only with 0 or 10 ?!?!?!?!?!?
+  function between(min, max, between) {
+    if (min <= between && between <= max) return true
+  }
+
   let playerCount = 1
   const players = props.players.map((player, index) =>
     calculateDistance(player.xCoord, player.yCoord) <= props.distance &&
-    player.pop >= props.minPop &&
-    player.pop <= props.maxPop ? (
+    between(props.minPop, props.maxPop, player.pop) === true ? (
       <tr key={index}>
         <th scope="row">{playerCount++}</th>
         <td>{calculateDistance(player.xCoord, player.yCoord)}</td>

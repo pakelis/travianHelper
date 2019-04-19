@@ -31,7 +31,7 @@ class FarmList extends Component {
         this.setState({
           players: res.data,
           displayList: 1,
-          //SOMETHING WRONG WITH THIS
+          // spreading state makes error
           // ...this.state,
           published: {...this.state.published, ...this.state.unpublished},
         })
@@ -49,6 +49,13 @@ class FarmList extends Component {
     })
   }
 
+  sortBy() {
+    let sorted = this.state.players.sort((a, b) => a < b)
+    this.setState({
+      players: sorted,
+    })
+  }
+
   render() {
     let list = null
 
@@ -56,6 +63,7 @@ class FarmList extends Component {
       list = (
         <div>
           <FarmTable
+            sortBy={this.sortBy}
             x={this.state.published.x}
             y={this.state.published.y}
             minPop={this.state.published.minPop}
