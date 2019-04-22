@@ -24,12 +24,15 @@ class FarmList extends Component {
     displayList: 0,
   }
 
+  //RENDER SPINNER WHILE FETCHING ?
+
   displayList = e => {
     axios
       .get(`/farmlist/${this.state.unpublished.serverName}`)
       .then(res => {
         this.setState({
-          players: res.data,
+          loading: true,
+          players: res.data.sort((a, b) => a < b),
           displayList: 1,
           // spreading state makes error
           // ...this.state,
@@ -49,13 +52,6 @@ class FarmList extends Component {
     })
   }
 
-  sortBy() {
-    let sorted = this.state.players.sort((a, b) => a < b)
-    this.setState({
-      players: sorted,
-    })
-  }
-
   render() {
     let list = null
 
@@ -63,7 +59,6 @@ class FarmList extends Component {
       list = (
         <div>
           <FarmTable
-            sortBy={this.sortBy}
             x={this.state.published.x}
             y={this.state.published.y}
             minPop={this.state.published.minPop}

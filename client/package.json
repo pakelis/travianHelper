@@ -4,11 +4,13 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "emotion": "^10.0.9",
     "react": "^16.8.6",
     "react-country-flag": "^1.0.2",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "react-spinners": "^0.5.4"
   },
   "scripts": {
     "start": "react-scripts start",
