@@ -141,7 +141,7 @@ router.get('/farmlist/:id', (req, res) => {
           accountName: accountName,
           allianceId: userString[8],
           allianceName: allianceName,
-          pop: userString[10],
+          population: userString[10],
         }
         parsedPlayers.push(user)
       }

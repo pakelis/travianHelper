@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
+import {ClipLoader} from 'react-spinners'
 import axios from 'axios'
 import FarmTable from './FarmTable'
 
 class FarmList extends Component {
   state = {
+    loading: false,
     players: [],
     unpublished: {
       serverName: '',
@@ -24,15 +26,14 @@ class FarmList extends Component {
     displayList: 0,
   }
 
-  //RENDER SPINNER WHILE FETCHING ?
-
   displayList = e => {
+    this.enableSpinner()
     axios
       .get(`/farmlist/${this.state.unpublished.serverName}`)
       .then(res => {
         this.setState({
-          loading: true,
-          players: res.data.sort((a, b) => a < b),
+          loading: false,
+          players: res.data,
           displayList: 1,
           // spreading state makes error
           // ...this.state,
@@ -52,10 +53,16 @@ class FarmList extends Component {
     })
   }
 
+  enableSpinner() {
+    this.setState({
+      loading: true,
+    })
+  }
+
   render() {
     let list = null
 
-    if (this.state.displayList === 1) {
+    if (this.state.displayList === 1 && this.state.loading === false) {
       list = (
         <div>
           <FarmTable
@@ -147,6 +154,9 @@ class FarmList extends Component {
                   Search
                 </button>
               </div>
+            </div>
+            <div className="text-center mt-4">
+              <ClipLoader loading={this.state.loading} size={125} />
             </div>
           </div>
         </div>

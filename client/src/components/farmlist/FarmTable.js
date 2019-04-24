@@ -9,11 +9,47 @@ class FarmTable extends Component {
     players: this.props.players,
   }
 
-  //STILL DOESNT WORK SORTING NEED TO FIX IT
-  onSort(event, sortKey) {
-    const players = this.state.players
-    players.sort((a, b) => a[sortKey] < b[sortKey])
-    this.setState({players: players})
+  updateTable() {
+    let players = this.props.players
+    //Add distance to players object
+    players.forEach(
+      player =>
+        (player.distance = this.calculateDistance(
+          player.xCoord,
+          player.yCoord,
+        )),
+    )
+
+    //Filter players
+    players = players.filter(
+      player =>
+        parseFloat(this.props.minPop) <= parseFloat(player.population) &&
+        parseFloat(player.population) <= parseFloat(this.props.maxPop),
+    )
+
+    //Sort by distance
+    players.sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance))
+
+    this.setState({
+      players,
+    })
+  }
+
+  componentDidMount() {
+    this.updateTable()
+  }
+
+  // if user changes form inputs rerender
+  componentDidUpdate(nextProps) {
+    if (
+      this.props.minPop !== nextProps.minPop ||
+      this.props.maxPop !== nextProps.maxPop ||
+      this.props.x !== nextProps.x ||
+      this.props.y !== nextProps.y ||
+      this.props.distance !== nextProps.distance
+    ) {
+      this.updateTable()
+    }
   }
 
   calculateDistance(playerX, playerY) {
@@ -26,21 +62,13 @@ class FarmTable extends Component {
     return dist
   }
 
-  //doesnt work in between if i write min pop 5 or 3 only with 0 or 10 ?!?!?!?!?!?
-  between(min, max, between) {
-    if (min <= between && between <= max) return true
-  }
-
   render() {
     let playerCount = 1
     const players = this.state.players.map((player, index) =>
-      this.calculateDistance(player.xCoord, player.yCoord) <=
-        this.props.distance &&
-      this.between(this.props.minPop, this.props.maxPop, player.pop) ===
-        true ? (
+      player.distance <= this.props.distance ? (
         <tr key={index}>
           <th scope="row">{playerCount++}</th>
-          <td>{this.calculateDistance(player.xCoord, player.yCoord)}</td>
+          <td>{player.distance}</td>
           <td>{player.xCoord}</td>
           <td>{player.yCoord}</td>
           <td>{player.villageName}</td>
@@ -56,7 +84,7 @@ class FarmTable extends Component {
               <img src={Teutons} alt="Teutons" width="30" height="30" />
             ) : null}
           </td>
-          <td>{player.pop}</td>
+          <td>{player.population}</td>
           <td>{player.allianceName}</td>
         </tr>
       ) : null,
@@ -64,7 +92,7 @@ class FarmTable extends Component {
 
     return (
       <div className="container col-md-16">
-        <div className="card mt-5">
+        <div className="card mt-3">
           <div className="table-responsive">
             <table className="table">
               <thead className="thead-dark">
@@ -76,11 +104,7 @@ class FarmTable extends Component {
                   <th scope="col">Village</th>
                   <th scope="col">Player</th>
                   <th scope="col">Tribe</th>
-                  <th scope="col">
-                    <button onClick={e => this.onSort(e, 'pop')}>
-                      Population
-                    </button>
-                  </th>
+                  <th scope="col">Population</th>
                   <th scope="col">Alliance</th>
                 </tr>
               </thead>
