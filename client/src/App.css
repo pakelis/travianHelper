@@ -16,6 +16,10 @@
   border-radius: 1rem;
 }
 
+.errorMessage {
+  color: red;
+}
+
 .nav-link {
   font-size: 1.25em;
   font-weight: 400;
