@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {ClipLoader} from 'react-spinners'
 import CountryList from '../serverlist/CountryList'
 import ReactCountryFlag from 'react-country-flag'
 import axios from 'axios'
@@ -6,12 +7,20 @@ import axios from 'axios'
 class Landing extends Component {
   state = {
     servers: [],
+    loading: false,
+  }
+
+  enableSpinner() {
+    this.setState({
+      loading: true,
+    })
   }
 
   componentDidMount() {
+    this.enableSpinner()
     axios
       .get('/servers')
-      .then(res => this.setState({servers: res.data}))
+      .then(res => this.setState({servers: res.data, loading: false}))
       .catch(err => console.log(err))
   }
 
@@ -85,21 +94,28 @@ class Landing extends Component {
     return (
       <div className="container mt-5">
         <CountryList />
-        <div className="card mt-5">
-          <div className="table-responsive">
-            <table className="table">
-              <thead className="thead-dark">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Server</th>
-                  <th scope="col">Start Date</th>
-                  <th scope="col">Register</th>
-                </tr>
-              </thead>
-              <tbody>{server}</tbody>
-            </table>
+        {/* if loading -  spinner if not -  table */}
+        {this.state.loading ? (
+          <div className="text-center mt-5">
+            <ClipLoader loading={this.state.loading} size={125} />
           </div>
-        </div>
+        ) : (
+          <div className="card mt-5">
+            <div className="table-responsive">
+              <table className="table">
+                <thead className="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Server</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">Register</th>
+                  </tr>
+                </thead>
+                <tbody>{server}</tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
     )
   }

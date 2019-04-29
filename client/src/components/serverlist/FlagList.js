@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {ClipLoader} from 'react-spinners'
 import axios from 'axios'
 import ReactCountryFlag from 'react-country-flag'
 import CountryList from './CountryList'
@@ -6,14 +7,23 @@ import CountryList from './CountryList'
 class FlagList extends Component {
   state = {
     servers: [],
+    loading: false,
+  }
+
+  enableSpinner() {
+    this.setState({
+      loading: true,
+    })
   }
 
   componentDidMount() {
+    this.enableSpinner()
     axios
       .get(`/servers/${this.props.match.params.id}`)
       .then(res =>
         this.setState({
           servers: res.data,
+          loading: false,
         }),
       )
       .catch(err => console.log(err))
@@ -23,11 +33,13 @@ class FlagList extends Component {
     //check if props changed if so get axios request to change state to rerender component!
     //TODO make axios request a function so it wont duplicate
     if (this.props.match.params.id !== prevprops.match.params.id) {
+      this.enableSpinner()
       axios
         .get(`/servers/${this.props.match.params.id}`)
         .then(res =>
           this.setState({
             servers: res.data,
+            loading: false,
           }),
         )
         .catch(err => console.log(err))
@@ -104,21 +116,27 @@ class FlagList extends Component {
     return (
       <div className="container mt-5">
         <CountryList />
-        <div className="card mt-5">
-          <div className="table-responsive">
-            <table className="table">
-              <thead className="thead-dark">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Server</th>
-                  <th scope="col">Start Date</th>
-                  <th scope="col">Register</th>
-                </tr>
-              </thead>
-              <tbody>{server}</tbody>
-            </table>
+        {this.state.loading ? (
+          <div className="text-center mt-5">
+            <ClipLoader loading={this.state.loading} size={125} />
           </div>
-        </div>
+        ) : (
+          <div className="card mt-5">
+            <div className="table-responsive">
+              <table className="table">
+                <thead className="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Server</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">Register</th>
+                  </tr>
+                </thead>
+                <tbody>{server}</tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
     )
   }
