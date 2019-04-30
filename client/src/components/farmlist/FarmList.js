@@ -25,6 +25,7 @@ const formValid = ({formErrors, ...rest}) => {
 class FarmList extends Component {
   state = {
     loading: false,
+    alert: false,
     players: [],
     unpublished: {
       serverName: null,
@@ -53,45 +54,33 @@ class FarmList extends Component {
     displayList: 0,
   }
 
-  handleErrors = e => {
-    if (formValid(this.state)) {
-      console.log(`
-        Submitting Form
-        ServerName: ${this.state.unpublished.serverName}
-        x: ${this.state.unpublished.x}
-        y: ${this.state.unpublished.y}
-        minPop: ${this.state.unpublished.minPop}
-        maxPop: ${this.state.unpublished.maxPop}
-        distance: ${this.state.unpublished.distance}
-      `)
-    } else {
-      console.log(`
-        FORM INVALID - DISPLAY ERROR MESSAGE
-      `)
-    }
-  }
-
   displayList = e => {
-    this.enableSpinner()
-    axios
-      .get(`/farmlist/${this.state.unpublished.serverName}`)
-      .then(res => {
-        this.setState({
-          loading: false,
-          players: res.data,
-          displayList: 1,
-          // spreading state makes error
-          // ...this.state,
-          published: {...this.state.published, ...this.state.unpublished},
+    if (formValid(this.state)) {
+      this.enableSpinner()
+      axios
+        .get(`/farmlist/${this.state.unpublished.serverName}`)
+        .then(res => {
+          this.setState({
+            loading: false,
+            players: res.data,
+            displayList: 1,
+            // spreading state makes error
+            // ...this.state,
+            published: {...this.state.published, ...this.state.unpublished},
+            alert: false,
+          })
         })
+        .catch(err => console.log(err))
+    } else {
+      this.setState({
+        alert: true,
       })
-      .catch(err => console.log(err))
+    }
   }
 
   onInputChange = e => {
     const {name, value} = e.target
     let formErrors = {...this.state.formErrors}
-    console.log(formErrors.x)
 
     switch (name) {
       case 'serverName':
@@ -142,6 +131,12 @@ class FarmList extends Component {
   enableSpinner() {
     this.setState({
       loading: true,
+    })
+  }
+
+  enableButton() {
+    this.setState({
+      disabledButton: false,
     })
   }
 
@@ -307,6 +302,11 @@ class FarmList extends Component {
                 </button>
               </div>
             </div>
+            {this.state.alert ? (
+              <div className="alert alert-danger mt-3">
+                All fields must be correct!
+              </div>
+            ) : null}
             <div className="text-center mt-4">
               <ClipLoader loading={this.state.loading} size={125} />
             </div>
