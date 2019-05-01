@@ -7,6 +7,8 @@ import Natars from '../img/natars.png'
 class FarmTable extends Component {
   state = {
     players: this.props.players,
+    //check if server is travian
+    travian: true,
   }
 
   updateTable() {
@@ -35,7 +37,28 @@ class FarmTable extends Component {
     })
   }
 
+  checkIfTravian() {
+    const {players} = this.props // destructing
+    if (
+      !isNaN(players[0].tribeId) &&
+      players[0].tribeId <= 7 &&
+      players[0].tribeId >= 1
+    ) {
+      console.log('TRAVIAN')
+      this.setState({
+        travian: true,
+      })
+    } else {
+      console.log('NOT TRAVIAN')
+      this.setState({
+        travian: false,
+      })
+    }
+  }
+
   componentDidMount() {
+    this.checkIfTravian()
+    //Update table
     this.updateTable()
   }
 
@@ -48,6 +71,7 @@ class FarmTable extends Component {
       this.props.y !== nextProps.y ||
       this.props.distance !== nextProps.distance
     ) {
+      this.checkIfTravian()
       this.updateTable()
     }
   }
@@ -74,6 +98,7 @@ class FarmTable extends Component {
           <td>{player.villageName}</td>
           <td>{player.accountName}</td>
           <td>
+            {/* Add new tribes from sand and fire */}
             {player.tribeId === '5' ? (
               <img src={Natars} alt="Natars" width="30" height="30" />
             ) : player.tribeId === '3' ? (

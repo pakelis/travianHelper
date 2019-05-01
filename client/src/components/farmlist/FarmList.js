@@ -60,6 +60,7 @@ class FarmList extends Component {
       axios
         .get(`/farmlist/${this.state.unpublished.serverName}`)
         .then(res => {
+          console.log(res.data)
           this.setState({
             loading: false,
             players: res.data,
@@ -115,17 +116,14 @@ class FarmList extends Component {
         break
     }
 
-    this.setState(
-      {
-        // spreading unpublished state so i could use [e.target.name] : e.target.value
-        formErrors,
-        unpublished: {
-          ...this.state.unpublished,
-          [e.target.name]: e.target.value,
-        },
+    this.setState({
+      // spreading unpublished state so i could use [e.target.name] : e.target.value
+      formErrors,
+      unpublished: {
+        ...this.state.unpublished,
+        [e.target.name]: e.target.value,
       },
-      () => console.log(this.state),
-    )
+    })
   }
 
   enableSpinner() {
