@@ -34,3 +34,33 @@ a:hover {
   color: white;
   text-decoration: none;
 }
+
+/* Server info input with button */
+
+.subscribe_form {
+  max-width: 470px;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0px 2px 5px 0px rgba(10, 6, 20, 0.24);
+  height: 44px;
+}
+
+#subscription_area input {
+  height: 44px;
+}
+#subscription_area form-control {
+  border: none;
+}
+
+#subscription_area button {
+  border: none;
+  height: 44px;
+  background-color: #b23e34;
+  color: #fff;
+  margin: -1px;
+  border-radius: 0;
+  width: 135px;
+  text-transform: uppercase;
+  position: relative;
+  transition: all ease 0.3s;
+}

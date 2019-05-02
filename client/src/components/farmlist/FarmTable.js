@@ -115,7 +115,7 @@ class FarmTable extends Component {
       ) : null,
     )
 
-    return (
+    const table = this.state.travian ? (
       <div className="container col-md-16">
         <div className="card mt-3">
           <div className="table-responsive">
@@ -138,7 +138,13 @@ class FarmTable extends Component {
           </div>
         </div>
       </div>
+    ) : (
+      <div className="alert alert-warning">
+        Make sure you entered right server name
+      </div>
     )
+
+    return <div>{table}</div>
   }
 }
 

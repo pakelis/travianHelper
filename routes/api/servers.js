@@ -66,6 +66,7 @@ router.get('/servers/:id', (req, res) => {
     .sort({'server.days': 1})
     .then(servers => {
       let country = []
+      let willStart = []
       for (const item of servers) {
         if (
           req.params.id === 'travian.com' &&
@@ -85,6 +86,19 @@ router.get('/servers/:id', (req, res) => {
           country.push(item)
         }
       }
+
+      for (let item of country) {
+        const {server} = item
+        if (server.days.length > 3) {
+          willStart.push(item)
+        }
+      }
+      for (let i = 0; i < willStart.length; i++) {
+        country.pop()
+      }
+
+      country = willStart.concat(country)
+
       //if array is empty throw status 404
       if (country.length < 1 || undefined) {
         res.status(404).json("Can't find servers with that name")

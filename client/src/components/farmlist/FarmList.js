@@ -8,14 +8,14 @@ const urlRegex = RegExp(
 )
 const coordRegex = RegExp(/^[0-9 ()+-]+$/)
 
-const formValid = ({formErrors, ...rest}) => {
+const formValid = ({unpublished, formErrors, ...rest}) => {
   let valid = true
 
   //if val.length greater then 0 put valid to false, cus there is an error then.
   Object.values(formErrors).forEach(val => val.length > 0 && (valid = false))
 
   //validate the form was filled out
-  Object.values(rest).forEach(val => {
+  Object.values(unpublished).forEach(val => {
     val === null && (valid = false)
   })
 
@@ -60,7 +60,6 @@ class FarmList extends Component {
       axios
         .get(`/farmlist/${this.state.unpublished.serverName}`)
         .then(res => {
-          console.log(res.data)
           this.setState({
             loading: false,
             players: res.data,
