@@ -83,7 +83,7 @@ class ChartList extends Component {
         {this.state.rightName ? (
           <div>
             <div>
-              <Chart
+              <Chart2
                 gauls={gauls}
                 romans={romans}
                 natars={natars}
@@ -91,7 +91,7 @@ class ChartList extends Component {
               />
             </div>
             <div>
-              <Chart2
+              <Chart
                 gauls={gauls}
                 romans={romans}
                 natars={natars}

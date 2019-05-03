@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react'
-import {ResponsiveContainer, PieChart, Pie, Legend, Cell} from 'recharts'
+import {ResponsiveContainer, PieChart, Pie, Legend, Line, Cell} from 'recharts'
 
 const COLORS = ['#CBB760', '#841C16', '#640B0A', '#9F3C2D']
 
@@ -14,7 +14,7 @@ class Chart2 extends PureComponent {
     ]
 
     return (
-      <div style={{width: '100%', height: 300}}>
+      <div className="mt-5" style={{width: '80%', height: 300}}>
         <ResponsiveContainer>
           <PieChart>
             <Pie dataKey="value" data={data} fill="#8884d8" label>
@@ -25,6 +25,7 @@ class Chart2 extends PureComponent {
                 />
               ))}
             </Pie>
+            <Legend layout="vertical" verticalAlign="middle" align="right" />
           </PieChart>
         </ResponsiveContainer>
       </div>
