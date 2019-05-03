@@ -1,14 +1,7 @@
 import React, {PureComponent} from 'react'
 import {PieChart, Pie, Sector, Cell} from 'recharts'
 
-const data = [
-  {name: 'Group A', value: 400},
-  {name: 'Group B', value: 300},
-  {name: 'Group C', value: 300},
-  {name: 'Group D', value: 200},
-]
-
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
+const COLORS = ['#CBB760', '#841C16', '#640B0A', '#9F3C2D']
 
 const RADIAN = Math.PI / 180
 const renderCustomizedLabel = ({
@@ -39,57 +32,50 @@ const renderCustomizedLabel = ({
 
 class Chart extends PureComponent {
   state = {
-    data: this.props.data,
     tribes: {
-      teutons: null,
-      romans: null,
-      gauls: null,
-      natars: null,
+      teutons: this.props.teutons,
+      romans: this.props.romans,
+      gauls: this.props.gauls,
+      natars: this.props.natars,
     },
   }
 
   componentDidMount() {
-    this.getTribes()
-    console.log(this.state.tribes)
+    console.log(this.state)
   }
 
   componentDidUpdate(nextProps) {
-    if (this.props.data !== nextProps.data) {
-      this.getTribes()
+    if (
+      this.props.teutons !== nextProps.teutons ||
+      this.props.gauls !== nextProps.gauls ||
+      this.props.natars !== nextProps.natars ||
+      this.props.romans !== nextProps.romans
+    ) {
+      this.setState(
+        {
+          tribes: {
+            ...this.state.tribes,
+            teutons: this.props.teutons,
+            romans: this.props.romans,
+            gauls: this.props.gauls,
+            natars: this.props.natars,
+          },
+        },
+        () => console.log(this.state),
+      )
     }
   }
 
-  //Parsing data - teutons, romans, gauls , natars
-  getTribes() {
-    const {data} = this.state
-    let teutons = 0
-    let romans = 0
-    let gauls = 0
-    let natars = 0
-
-    data.forEach(val => {
-      if (val.tribeId === '1') {
-        teutons += 1
-      } else if (val.tribeId === '2') {
-        romans += 1
-      } else if (val.tribeId === '3') {
-        gauls += 1
-      } else if (val.tribeId === '5') {
-        natars += 1
-      }
-    })
-
-    this.setState({
-      tribes: {
-        teutons: teutons,
-        romans: romans,
-        gauls: gauls,
-        natars: natars,
-      },
-    })
-  }
-
   render() {
+    //Data to render pie chart
+    const {romans, gauls, teutons, natars} = this.state.tribes
+    const data = [
+      {name: 'romans', value: romans},
+      {name: 'gauls', value: gauls},
+      {name: 'teutons', value: teutons},
+      {name: 'natars', value: natars},
+    ]
+
     return (
       <PieChart width={400} height={400}>
         <Pie
