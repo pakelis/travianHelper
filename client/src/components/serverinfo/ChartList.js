@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import Chart from './Chart'
-import Chart2 from './Chart2'
+import BarDiagram from './diagrams/BarDiagram'
+import PieDiagram from './diagrams/PieDiagram'
 
 class ChartList extends Component {
   state = {
@@ -76,6 +76,22 @@ class ChartList extends Component {
     })
   }
 
+  getPop() {
+    const {data} = this.props
+    let fifty = 0
+    let hundred = 0
+    let hundred3 = 0
+    let hundred5 = 0
+    let hundred10 = 0
+    let hundred20 = 0
+    let etc = 0
+
+    data.forEach(val => {
+      //TODO ADD MAKE COUNTER OUT OF EVERY VARIABLE, TO COUNT HOW MANY VILLAGES GOT POP.
+      //SWITCH STATEMENT OR IF ELSE
+    })
+  }
+
   render() {
     const {gauls, romans, natars, teutons} = this.state.tribes
     return (
@@ -83,7 +99,7 @@ class ChartList extends Component {
         {this.state.rightName ? (
           <div>
             <div>
-              <Chart2
+              <PieDiagram
                 gauls={gauls}
                 romans={romans}
                 natars={natars}
@@ -91,7 +107,7 @@ class ChartList extends Component {
               />
             </div>
             <div>
-              <Chart
+              <BarDiagram
                 gauls={gauls}
                 romans={romans}
                 natars={natars}
