@@ -4,6 +4,15 @@ import {ResponsiveContainer, PieChart, Pie, Legend, Line, Cell} from 'recharts'
 const COLORS = ['#CBB760', '#841C16', '#640B0A', '#9F3C2D']
 
 class PieDiagram extends PureComponent {
+  state = {
+    tribes: {
+      teutons: this.props.teutons,
+      romans: this.props.romans,
+      gauls: this.props.gauls,
+      natars: this.props.natars,
+    },
+  }
+
   componentDidMount() {
     console.log(this.state)
   }
@@ -31,7 +40,7 @@ class PieDiagram extends PureComponent {
   }
 
   render() {
-    const {romans, gauls, teutons, natars} = this.props
+    const {romans, gauls, teutons, natars} = this.state.tribes
     const data = [
       {name: 'romans', value: romans},
       {name: 'gauls', value: gauls},

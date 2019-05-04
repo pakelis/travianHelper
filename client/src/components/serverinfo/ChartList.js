@@ -12,11 +12,20 @@ class ChartList extends Component {
       gauls: null,
       natars: null,
     },
+    villagePop: {
+      tjillfifty: null,
+      fiftytohundred: null,
+      hundredtothree: null,
+      threetofive: null,
+      fiveto1k: null,
+      kplus: null,
+    },
   }
 
   componentWillMount() {
     this.checkIfTravian()
     this.getTribes()
+    this.getPop()
   }
 
   componentDidUpdate(nextProps) {
@@ -83,12 +92,34 @@ class ChartList extends Component {
     let hundred3 = 0
     let hundred5 = 0
     let hundred10 = 0
-    let hundred20 = 0
-    let etc = 0
+    let kplus = 0
 
     data.forEach(val => {
-      //TODO ADD MAKE COUNTER OUT OF EVERY VARIABLE, TO COUNT HOW MANY VILLAGES GOT POP.
-      //SWITCH STATEMENT OR IF ELSE
+      if (val.population <= 50) {
+        fifty += 1
+      } else if (50 <= val.population && val.population <= 100) {
+        hundred += 1
+      } else if (100 <= val.population && val.population <= 300) {
+        hundred3 += 1
+      } else if (300 <= val.population && val.population <= 500) {
+        hundred3 += 1
+      } else if (500 <= val.population && val.population <= 1000) {
+        hundred10 += 1
+      } else if (val.population > 1000) {
+        kplus += 1
+      }
+    })
+
+    this.setState({
+      villagePop: {
+        ...this.state.villagePop,
+        tillfifty: fifty,
+        fiftytohundred: hundred,
+        hundredtothree: hundred3,
+        threetofive: hundred5,
+        fiveto1k: hundred10,
+        kplus: kplus,
+      },
     })
   }
 
