@@ -9,53 +9,18 @@ import {
   Legend,
 } from 'recharts'
 
-const data = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-]
-
 class BarDiagram extends PureComponent {
   render() {
+    // const {fifty,hundred,threehundred,fivehundred,onethousand,kplus} = this.props
+    const data = [
+      {name: '0-50', villages: this.props.fifty},
+      {name: '50-100', villages: this.props.hundred},
+      {name: '100-300', villages: this.props.threehundred},
+      {name: '300-500', villages: this.props.fivehundred},
+      {name: '500-800', villages: this.props.fivetoeight},
+      {name: '800-1000', villages: this.props.onethousand},
+      {name: '1000+', villages: this.props.kplus},
+    ]
     return (
       <div className="mt-5">
         <BarChart
@@ -70,12 +35,19 @@ class BarDiagram extends PureComponent {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis
+            dataKey="name"
+            interval={0}
+            angle={-45}
+            textAnchor="end"
+            width={80}
+          />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="pv" fill="#8884d8" background={{fill: '#eee'}} />
+          <Bar dataKey="villages" fill="#8884d8" background={{fill: '#eee'}} />
         </BarChart>
+        {console.log(this.props)}
       </div>
     )
   }

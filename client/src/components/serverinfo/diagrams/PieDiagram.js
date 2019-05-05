@@ -13,10 +13,6 @@ class PieDiagram extends PureComponent {
     },
   }
 
-  componentDidMount() {
-    console.log(this.state)
-  }
-
   componentDidUpdate(nextProps) {
     if (
       this.props.teutons !== nextProps.teutons ||
@@ -34,7 +30,7 @@ class PieDiagram extends PureComponent {
             natars: this.props.natars,
           },
         },
-        () => console.log(this.state),
+        // () => console.log(this.state),
       )
     }
   }

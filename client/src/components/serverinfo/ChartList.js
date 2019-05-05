@@ -13,10 +13,11 @@ class ChartList extends Component {
       natars: null,
     },
     villagePop: {
-      tjillfifty: null,
+      tillfifty: null,
       fiftytohundred: null,
       hundredtothree: null,
       threetofive: null,
+      fivetoeight: null,
       fiveto1k: null,
       kplus: null,
     },
@@ -42,12 +43,10 @@ class ChartList extends Component {
       data[0].tribeId <= 7 &&
       data[0].tribeId >= 1
     ) {
-      console.log('TRAVIAN')
       this.setState({
         rightName: true,
       })
     } else {
-      console.log('NOT TRAVIAN')
       this.setState({
         rightName: false,
       })
@@ -91,6 +90,7 @@ class ChartList extends Component {
     let hundred = 0
     let hundred3 = 0
     let hundred5 = 0
+    let hundred8 = 0
     let hundred10 = 0
     let kplus = 0
 
@@ -102,8 +102,10 @@ class ChartList extends Component {
       } else if (100 <= val.population && val.population <= 300) {
         hundred3 += 1
       } else if (300 <= val.population && val.population <= 500) {
-        hundred3 += 1
-      } else if (500 <= val.population && val.population <= 1000) {
+        hundred5 += 1
+      } else if (500 <= val.population && val.population <= 800) {
+        hundred8 += 1
+      } else if (800 <= val.population && val.population <= 1000) {
         hundred10 += 1
       } else if (val.population > 1000) {
         kplus += 1
@@ -117,6 +119,7 @@ class ChartList extends Component {
         fiftytohundred: hundred,
         hundredtothree: hundred3,
         threetofive: hundred5,
+        fivetoeight: hundred8,
         fiveto1k: hundred10,
         kplus: kplus,
       },
@@ -125,6 +128,15 @@ class ChartList extends Component {
 
   render() {
     const {gauls, romans, natars, teutons} = this.state.tribes
+    const {
+      tillfifty,
+      fiftytohundred,
+      hundredtothree,
+      threetofive,
+      fiveto1k,
+      fivetoeight,
+      kplus,
+    } = this.state.villagePop
     return (
       <div>
         {this.state.rightName ? (
@@ -139,10 +151,13 @@ class ChartList extends Component {
             </div>
             <div>
               <BarDiagram
-                gauls={gauls}
-                romans={romans}
-                natars={natars}
-                teutons={teutons}
+                fifty={tillfifty}
+                hundred={fiftytohundred}
+                threehundred={hundredtothree}
+                fivehundred={threetofive}
+                fivetoeight={fivetoeight}
+                onethousand={fiveto1k}
+                kplus={kplus}
               />
             </div>
           </div>
