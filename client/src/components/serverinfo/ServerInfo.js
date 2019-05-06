@@ -128,7 +128,11 @@ class ServerInfo extends Component {
                 </form>
               </div>
               <div className="text-center mt-4">
-                <ClipLoader loading={this.state.loading} size={125} />
+                <ClipLoader
+                  color={'#640b0a'}
+                  loading={this.state.loading}
+                  size={125}
+                />
               </div>
               {info}
             </div>

@@ -97,7 +97,11 @@ class Landing extends Component {
         {/* if loading -  spinner if not -  table */}
         {this.state.loading ? (
           <div className="text-center mt-5">
-            <ClipLoader loading={this.state.loading} size={125} />
+            <ClipLoader
+              color={'#640b0a'}
+              loading={this.state.loading}
+              size={125}
+            />
           </div>
         ) : (
           <div className="card mt-5">

@@ -305,7 +305,11 @@ class FarmList extends Component {
               </div>
             ) : null}
             <div className="text-center mt-4">
-              <ClipLoader loading={this.state.loading} size={125} />
+              <ClipLoader
+                color={'#640b0a'}
+                loading={this.state.loading}
+                size={125}
+              />
             </div>
           </div>
         </div>
