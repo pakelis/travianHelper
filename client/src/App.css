@@ -41,7 +41,7 @@ a:hover {
   max-width: 470px;
   width: 100%;
   margin: 0 auto;
-  box-shadow: 0px 2px 5px 0px rgba(10, 6, 20, 0.24);
+  /* box-shadow: 0px 2px 5px 0px rgba(10, 6, 20, 0.24); */
   height: 44px;
 }
 
@@ -55,7 +55,7 @@ a:hover {
 #subscription_area button {
   border: none;
   height: 44px;
-  background-color: #b23e34;
+  background-color: #9f3c2d;
   color: #fff;
   margin: -1px;
   border-radius: 0;
@@ -64,3 +64,21 @@ a:hover {
   position: relative;
   transition: all ease 0.3s;
 }
+
+/* input border colors when focused */
+
+.form-control:focus {
+  border-color: grey;
+  box-shadow: none;
+}
+.form-control.is-invalid:focus {
+  box-shadow: none;
+}
+.form-control.is-valid:focus {
+  box-shadow: none;
+}
+
+.btn.btn-default:focus {
+  box-shadow: none;
+}
+/* input border colors when focused */

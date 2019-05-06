@@ -33,6 +33,7 @@ class ChartList extends Component {
     if (this.props.data !== nextProps.data) {
       this.checkIfTravian()
       this.getTribes()
+      this.getPop()
     }
   }
 
@@ -162,7 +163,11 @@ class ChartList extends Component {
             </div>
           </div>
         ) : (
-          <div className="alert alert-danger">Please check server name</div>
+          <div className="row align-items-center justify-content-center">
+            <div className="alert alert-danger col-sm-6 text-center center-text">
+              Please check server name
+            </div>
+          </div>
         )}
       </div>
     )
