@@ -100,7 +100,7 @@ class FlagList extends Component {
           )}
         </td>
         <td>
-          <button type="button" className="btn btn-outline-dark">
+          <button type="button" className="btn btn-outline-light">
             <a
               href={`https://${server.server.name}`}
               target="_blank"
@@ -121,20 +121,18 @@ class FlagList extends Component {
             <ClipLoader loading={this.state.loading} size={125} />
           </div>
         ) : (
-          <div className="card mt-5">
-            <div className="table-responsive">
-              <table className="table">
-                <thead className="thead-dark">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Server</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">Register</th>
-                  </tr>
-                </thead>
-                <tbody>{server}</tbody>
-              </table>
-            </div>
+          <div className="card mt-5 p-0">
+            <table className="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Server</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">Register</th>
+                </tr>
+              </thead>
+              <tbody>{server}</tbody>
+            </table>
           </div>
         )}
       </div>

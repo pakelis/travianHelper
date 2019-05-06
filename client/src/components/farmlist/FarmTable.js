@@ -118,24 +118,22 @@ class FarmTable extends Component {
     const table = this.state.travian ? (
       <div className="container col-md-16">
         <div className="card mt-3">
-          <div className="table-responsive">
-            <table className="table">
-              <thead className="thead-dark">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Distance</th>
-                  <th scope="col">x coord</th>
-                  <th scope="col">y coord</th>
-                  <th scope="col">Village</th>
-                  <th scope="col">Player</th>
-                  <th scope="col">Tribe</th>
-                  <th scope="col">Population</th>
-                  <th scope="col">Alliance</th>
-                </tr>
-              </thead>
-              <tbody>{players}</tbody>
-            </table>
-          </div>
+          <table className="table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Distance</th>
+                <th scope="col">x coord</th>
+                <th scope="col">y coord</th>
+                <th scope="col">Village</th>
+                <th scope="col">Player</th>
+                <th scope="col">Tribe</th>
+                <th scope="col">Population</th>
+                <th scope="col">Alliance</th>
+              </tr>
+            </thead>
+            <tbody>{players}</tbody>
+          </table>
         </div>
       </div>
     ) : (

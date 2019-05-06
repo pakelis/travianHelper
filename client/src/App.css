@@ -47,6 +47,7 @@ a:hover {
 
 #subscription_area input {
   height: 44px;
+  border-radius: 5px 5px 5px 5px;
 }
 #subscription_area form-control {
   border: none;
@@ -63,6 +64,7 @@ a:hover {
   text-transform: uppercase;
   position: relative;
   transition: all ease 0.3s;
+  border-radius: 5px 5px 5px 5px;
 }
 
 /* input border colors when focused */
@@ -82,3 +84,117 @@ a:hover {
   box-shadow: none;
 }
 /* input border colors when focused */
+
+/* flaglist card background color */
+
+.card.bg-light {
+  border-radius: 5px 5px 0 0;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-color: #9f3c2d;
+  background-color: white;
+}
+
+/* TABLES */
+
+.table.table-borderless {
+  border-collapse: collapse;
+  font-size: 1em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  /* margin: 25px 0; */
+  min-height: 100%;
+  height: 100%;
+}
+
+.table > thead > tr {
+  background-color: #9f3c2d;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.table tbody tr:last-of-type {
+  border-bottom: 2px solid #9f3c2d;
+}
+
+/* BADGE PILL */
+
+.badge.badge-pill.badge-warning {
+  background-color: #9f3c2d;
+  color: white;
+}
+
+.badge.badge-pill.badge-success {
+  background-color: #f9e680;
+  color: #640b0a;
+}
+
+/* REGISTER BUTTON */
+
+.btn.btn-outline-light:hover {
+  background-color: #f9e680;
+}
+
+.btn.btn-outline-light:focus {
+  border: none;
+  box-shadow: none;
+  background-color: #f9e680;
+}
+
+.btn.btn-outline-light:focus {
+  border: none;
+  box-shadow: none;
+  background-color: #f9e680;
+}
+
+.btn.btn-outline-light {
+  border-color: #640b0a;
+  /* border: solid; */
+}
+
+.btn.btn-outline-light > a {
+  color: #640b0a;
+}
+
+/* Farm list form */
+
+.card-header {
+  /* background-color: #640b0a; */
+  background-color: #9f3c2d;
+  color: white;
+  border-radius: 5px 5px 0 0;
+}
+
+.card.form {
+  /* border: solid; */
+  /* border-color: #640b0a; */
+  border-bottom: 5px solid #9f3c2d;
+  /* border-right: 0.5px solid #9f3c2d; */
+  /* border-left: 0.5px solid #9f3c2d; */
+}
+
+.btn.btn-primary {
+  background-color: #aa8f36;
+  border: none;
+}
+
+.btn.btn-primary:active:focus {
+  background-color: #aa8f36 !important;
+  /* background-color: #f9e680 !important; */
+  /* background-color: #F9E680 */
+  border: none !important;
+  box-shadow: none !important;
+}

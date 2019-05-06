@@ -161,7 +161,7 @@ class FarmList extends Component {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6 p-4">
-            <div className="card">
+            <div className="card form">
               <div className="card-header text-center">Farm Finder</div>
               <div className="card-body">
                 <div className="form-row">
