@@ -4,7 +4,7 @@ const scraper = require('./scrape')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const app = express()
-const port = process.env.port || 5000
+const port = process.env.PORT || 5000
 const path = require('path')
 
 //Get scripts
