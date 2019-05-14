@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react'
-import {ResponsiveContainer, PieChart, Pie, Legend, Line, Cell} from 'recharts'
+import {ResponsiveContainer, PieChart, Pie, Legend, Cell} from 'recharts'
 
 const COLORS = ['#CBB760', '#841C16', '#640B0A', '#9F3C2D']
 

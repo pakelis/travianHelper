@@ -1,3 +1,5 @@
-module.exports = {
-  mongoURI: 'mongodb://mannypa:dainu5829@ds145555.mlab.com:45555/travianhelper',
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./keys_prod')
+} else {
+  module.exports = require('./keys_dev')
 }
