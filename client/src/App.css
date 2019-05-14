@@ -92,7 +92,7 @@ a:hover {
   border-collapse: collapse;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  border-color: #9f3c2d;
+  /* border-color: #9f3c2d; */
   background-color: white;
 }
 
@@ -162,6 +162,7 @@ a:hover {
 
 .btn.btn-outline-light {
   border-color: #640b0a;
+  color: #640b0a;
   /* border: solid; */
 }
 
@@ -187,8 +188,8 @@ a:hover {
 }
 
 .btn.btn-primary {
-  background-color: #aa8f36;
-  border: none;
+  /* background-color: #b8b9bc; */
+  /* border: none; */
 }
 
 .btn.btn-primary:active:focus {

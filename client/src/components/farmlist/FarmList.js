@@ -292,7 +292,7 @@ class FarmList extends Component {
               <div className="col-md-12 text-center mb-3">
                 <button
                   type="submit"
-                  className="btn btn-primary btn-lg"
+                  className="btn btn-outline-light btn-lg"
                   onClick={this.displayList}
                 >
                   Search
