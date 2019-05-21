@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from 'recharts'
 
 class BarDiagram extends PureComponent {
@@ -67,37 +68,38 @@ class BarDiagram extends PureComponent {
       {name: '1000+ pop', villages: kplus},
     ]
     return (
-      <div className="row align-items-center justify-content-center">
-        <div className="mt-5">
-          <BarChart
-            width={600}
-            height={450}
-            data={data}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
-              dataKey="name"
-              interval={0}
-              angle={-45}
-              textAnchor="end"
-              height={120}
-              tick={{fontWeight: 'bold'}}
-            />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar
-              dataKey="villages"
-              fill="#9F3C2D"
-              background={{fill: '#eee'}}
-            />
-          </BarChart>
+      <div className="row justify-content-center">
+        <div className="barchart mt-5" style={{width: '60%', height: 400}}>
+          <ResponsiveContainer>
+            <BarChart
+              data={data}
+              margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                hide={true}
+                dataKey="name"
+                interval={0}
+                angle={-45}
+                textAnchor="end"
+                height={120}
+                tick={{fontWeight: 'bold'}}
+              />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar
+                dataKey="villages"
+                fill="#9F3C2D"
+                background={{fill: '#eee'}}
+              />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
     )

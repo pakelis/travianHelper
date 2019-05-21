@@ -6,10 +6,12 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-md navbar-light">
-        <Link to="/" className="navbar-brand">
-          <img src={logo} alt="Logo" width="100" height="100" />
-          TRAVIAN SERVER LIST
-        </Link>
+        <div className="d-none d-lg-block">
+          <Link to="/" className="navbar-brand">
+            <img src={logo} alt="Logo" width="100" height="100" />
+            TRAVIAN SERVER LIST
+          </Link>
+        </div>
         <button
           className="navbar-toggler"
           data-toggle="collapse"

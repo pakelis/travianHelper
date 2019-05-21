@@ -199,3 +199,10 @@ a:hover {
   border: none !important;
   box-shadow: none !important;
 }
+
+@media (max-width: 669px) {
+  .barchart.mt-5 {
+    width: 100% !important;
+    height: 300px !important;
+  }
+}

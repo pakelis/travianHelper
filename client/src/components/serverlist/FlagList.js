@@ -126,17 +126,19 @@ class FlagList extends Component {
           </div>
         ) : (
           <div className="card mt-5 p-0">
-            <table className="table table-borderless">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Server</th>
-                  <th scope="col">Start Date</th>
-                  <th scope="col">Register</th>
-                </tr>
-              </thead>
-              <tbody>{server}</tbody>
-            </table>
+            <div className="table-responsive">
+              <table className="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Server</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">Register</th>
+                  </tr>
+                </thead>
+                <tbody>{server}</tbody>
+              </table>
+            </div>
           </div>
         )}
       </div>

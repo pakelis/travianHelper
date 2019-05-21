@@ -45,20 +45,22 @@ class PieDiagram extends PureComponent {
     ]
 
     return (
-      <div className="mt-5" style={{width: '80%', height: 300}}>
-        <ResponsiveContainer>
-          <PieChart>
-            <Pie dataKey="value" data={data} fill="#8884d8" label>
-              {data.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-            </Pie>
-            <Legend layout="vertical" verticalAlign="middle" align="right" />
-          </PieChart>
-        </ResponsiveContainer>
+      <div className="row justify-content-center">
+        <div className="mt-5" style={{width: '90%', height: 300}}>
+          <ResponsiveContainer>
+            <PieChart>
+              <Pie dataKey="value" data={data} fill="#8884d8" label>
+                {data.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     )
   }
