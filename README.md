@@ -1,7 +1,7 @@
 # travianHelper
 travianHelper for my CS project
 
-Stack that i used:
+Stack that i used: \n
 ReactJS
 NodeJS, Express
 Cheerio for webscraping
