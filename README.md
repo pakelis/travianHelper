@@ -1,5 +1,10 @@
 # travianHelper
-travianHelper for my CS project
+travianHelper for my CS project </br>
+
+Application is used for Travian, browser game. </br>
+Aplication scrapes data from website and displays all servers in a table </br>
+Added Farm finder </br>
+Added Server info functionality </br>
 
 Stack that i used: </br>
 ReactJS </br>
